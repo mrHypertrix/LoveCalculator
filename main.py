@@ -28,7 +28,7 @@ def calculate(update: Update, _: CallbackContext) -> None:
 
 def main():
     # Replace 'YOUR_BOT_TOKEN' with your actual bot token
-    updater = Updater("YOUR_BOT_TOKEN")
+    updater = Updater("5868706821:AAFG_JUGNaB9RsEDvOet22EQsLotaKDrM-U")
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
