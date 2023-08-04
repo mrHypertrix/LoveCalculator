@@ -1,5 +1,6 @@
 import telebot
 import axios
+import telebot.types
 
 BASE_URL = "https://love-calculator.p.rapidapi.com"
 
@@ -8,7 +9,7 @@ BOT_TOKEN = "5868706821:AAFG_JUGNaB9RsEDvOet22EQsLotaKDrM-U"
 bot = telebot.TeleBot(BOT_TOKEN)
 
 @bot.register_message_handler(telebot.message.Command("LOVE_CALCULATE"))
-def love_calculate(message):
+def love_calculate(message: telebot.types.Message):
     your_name = message.text
     partner_name = "ashi"
 
