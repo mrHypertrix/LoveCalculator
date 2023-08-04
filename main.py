@@ -7,7 +7,7 @@ BOT_TOKEN = "5868706821:AAFG_JUGNaB9RsEDvOet22EQsLotaKDrM-U"
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
-@bot.on(telebot.message.Command("LOVE_CALCULATE"))
+@bot.register_message_handler(telebot.message.Command("LOVE_CALCULATE"))
 def love_calculate(message):
     your_name = message.text
     partner_name = "ashi"
