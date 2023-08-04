@@ -1,0 +1,12 @@
+Abg==2.3.2
+TgCrypto
+cachetools
+motor
+aiohttp
+requests
+pySmartDL
+pymongo[src]
+python-dotenv==1.0.0
+pyrogram
+pyrate_limiter
+python-telegram-bot
