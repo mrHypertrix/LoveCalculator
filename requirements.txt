@@ -1,4 +1,2 @@
-telethon
-axios
-python-telegram-bot
+requests
 telebot
