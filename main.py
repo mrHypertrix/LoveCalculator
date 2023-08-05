@@ -22,7 +22,7 @@ bot = telebot.TeleBot(config.bot_token)
 
 @bot.message_handler(commands=["start"])
 def start_message(message):
-    bot.send_message(message.chat.id, 'Welcome to the Love Calculator!')
+    bot.send_message(message.chat.id, 'Welcome to the Love Calculator!\n\nTo calculate love percentage, use the /love command.\nExample: /love nameA nameB\n\n[ᴢᴏɴᴇʏ](https://t.me/itszoney) ❤️', parse_mode='Markdown')
 
 @bot.message_handler(commands=["love"])
 def love_message(message):
@@ -34,7 +34,11 @@ def love_message(message):
         if your_name.lower() in ['zoney', 'zony'] or partner_name.lower() in ['zoney', 'zony']:
             bot.send_message(message.chat.id, 'Pyar ek dhokha hai, zoney nahi padhta usme 😜', reply_to_message_id=message.message_id)
         else:
-            love_percentage = calculate_love_percentage(your_name, partner_name)
+            if (your_name.lower() == 'shivani' and partner_name.lower() == 'gautam') or (your_name.lower() == 'gautam' and partner_name.lower() == 'shivani') or (your_name.lower() == 'panda' and partner_name.lower() == 'shivani'):
+                love_percentage = 100
+            else:
+                love_percentage = calculate_love_percentage(your_name, partner_name)
+
             reply_text = f"{your_name} and {partner_name} love percentage is {love_percentage}% ❤️❤️❤️"
             bot.send_message(message.chat.id, reply_text, reply_to_message_id=message.message_id)
     else:
