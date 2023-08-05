@@ -22,7 +22,7 @@ bot = telebot.TeleBot(config.bot_token)
 
 @bot.message_handler(commands=["start"])
 def start_message(message):
-    bot.send_message(message.chat.id, 'Welcome to the Love Calculator!\n\nTo calculate love percentage, use the /love command.\nExample: /love nameA nameB\n\n[ᴢᴏɴᴇʏ](https://t.me/itszoney) ❤️', parse_mode='Markdown')
+    bot.send_message(message.chat.id, 'Welcome to the Love Calculator!\n\nTo calculate love percentage, use the /love command.\nExample: /love nameA nameB\n\n[ʀᴇᴘᴏ](https://github.com/mrHypertrix/LoveCalculator) ❤️', parse_mode='Markdown')
 
 @bot.message_handler(commands=["love"])
 def love_message(message):
