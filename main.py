@@ -32,12 +32,12 @@ def love_message(message):
         partner_name = names[1]
 
         if your_name.lower() in ['zoney', 'zony'] or partner_name.lower() in ['zoney', 'zony']:
-            bot.send_message(message.chat.id, 'Pyar ek dhokha hai, zoney nahi padhta usme 😜')
+            bot.send_message(message.chat.id, 'Pyar ek dhokha hai, zoney nahi padhta usme 😜', reply_to_message_id=message.message_id)
         else:
             love_percentage = calculate_love_percentage(your_name, partner_name)
-            reply_text = f"@{message.from_user.username} {your_name} and {partner_name} love percentage is {love_percentage}% ❤️❤️❤️"
-            bot.send_message(message.chat.id, reply_text)
+            reply_text = f"{your_name} and {partner_name} love percentage is {love_percentage}% ❤️❤️❤️"
+            bot.send_message(message.chat.id, reply_text, reply_to_message_id=message.message_id)
     else:
-        bot.send_message(message.chat.id, 'Please provide two names for the love calculation.')
+        bot.send_message(message.chat.id, 'Please provide two names for the love calculation.', reply_to_message_id=message.message_id)
 
 bot.polling()
