@@ -1,32 +1,42 @@
-import requests
 import telebot
 
-BASE_URL = "https://love-calculator.p.rapidapi.com"
-RAPIDAPI_KEY = "b5f715ba64msha7ad36c828d9b16p14c38fjsnf07017e60f2a"  # Replace this with your RapidAPI key
-BOT_TOKEN = "5868706821:AAFG_JUGNaB9RsEDvOet22EQsLotaKDrM-U"        # Replace this with your Telegram Bot token
+def calculate_love_percentage(your_name, partner_name):
+  """Calculates the love percentage between two names.
 
-bot = telebot.TeleBot(BOT_TOKEN)
+  Args:
+    your_name: The name of the first person.
+    partner_name: The name of the second person.
 
-@bot.message_handler(commands=['LOVE_CALCULATE'])
-def love_calculate(message):
-    your_name, _, partner_name = message.text.partition(' ')
-    if not partner_name:
-        bot.send_message(message.chat.id, "Please provide two names separated by a space after the command.")
-        return
+  Returns:
+    The love percentage between the two names.
+  """
 
-    headers = {
-        "X-RapidAPI-Host": "love-calculator.p.rapidapi.com",
-        "X-RapidAPI-Key": b5f715ba64msha7ad36c828d9b16p14c38fjsnf07017e60f2a
-    }
+  your_name_score = sum(ord(letter) - ord('A') + 1 for letter in your_name)
+  partner_name_score = sum(ord(letter) - ord('A') + 1 for letter in partner_name)
+  love_percentage = (your_name_score * partner_name_score) % 100
+  return love_percentage
 
-    response = requests.get(f"{BASE_URL}/getPercentage?yourName={your_name}&partnerName={partner_name}", headers=headers)
+bot = telebot.TeleBot('5868706821:AAFG_JUGNaB9RsEDvOet22EQsLotaKDrM-U')
 
-    if response.status_code == 200:
-        data = response.json()
-        percentage = data["percentage"]
-        result = data["result"]
-        bot.send_message(message.chat.id, f"Your love percentage with {partner_name} is {percentage}%. {result}")
-    else:
-        bot.send_message(message.chat.id, "Something went wrong. Please try again later.")
+@bot.on('message')
+def handle_message(message):
+  if message.chat.type == 'group' and message.chat.title == 'Work Group':
+    if message.text == '/start':
+      bot.send_message(message.chat.id, 'Welcome to the Love Calculator!')
+    elif message.text == 'your name':
+      bot.send_message(message.chat.id, 'Enter your name:')
+    elif message.text == 'partner\'s name':
+      your_name = message.chat.first_name
+      partner_name = message.text
+      love_percentage = calculate_love_percentage(your_name, partner_name)
+      bot.send_message(message.chat.id, f'Your love percentage is {love_percentage}%')
+    elif message.text == '/love':
+      your_name = message.text.split(' ')[1]
+      partner_name = message.text.split(' ')[2]
+      love_percentage = calculate_love_percentage(your_name, partner_name)
+      bot.send_message(message.chat.id, f'Your love percentage is {love_percentage}%')
+      bot.send_message(message.chat.id, f'❤️❤️❤️')
+  else:
+    bot.send_message(message.chat.id, 'This bot is only available to work groups.')
 
 bot.polling()
