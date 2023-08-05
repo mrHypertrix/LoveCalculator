@@ -31,8 +31,7 @@ def love_message(message):
         your_name = names[0]
         partner_name = names[1]
         love_percentage = calculate_love_percentage(your_name, partner_name)
-        bot.send_message(message.chat.id, f'Your love percentage is {love_percentage}%')
-        bot.send_message(message.chat.id, '❤️❤️❤️')
+        bot.send_message(message.chat.id, f"{your_name} and {partner_name} love percentage is {love_percentage}% ❤️❤️❤️")
     else:
         bot.send_message(message.chat.id, 'Please provide two names for the love calculation.')
 
