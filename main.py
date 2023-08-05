@@ -27,7 +27,7 @@ def love(message):
   bot.send_message(message.chat.id, f'Your love percentage is {love_percentage}%')
   bot.send_message(message.chat.id, f'❤️❤️❤️')
 
-bot = telebot.TeleBot(config.api_id, config.api_hash, bot_token=config.bot_token)
+bot = telebot.TeleBot(config.api_id, config.api_hash, bot_token='YOUR_BOT_TOKEN')
 
 @bot.message_handler(commands=["start"])
 def start(message):
