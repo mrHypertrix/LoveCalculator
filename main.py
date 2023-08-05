@@ -35,8 +35,8 @@ def love_message(message):
             bot.send_message(message.chat.id, 'Pyar ek dhokha hai, zoney nahi padhta usme 😜')
         else:
             love_percentage = calculate_love_percentage(your_name, partner_name)
-            reply_text = f"{message.from_user.mention_html()} {your_name} and {partner_name} love percentage is {love_percentage}% ❤️❤️❤️"
-            bot.send_message(message.chat.id, reply_text, parse_mode='HTML')
+            reply_text = f"@{message.from_user.username} {your_name} and {partner_name} love percentage is {love_percentage}% ❤️❤️❤️"
+            bot.send_message(message.chat.id, reply_text)
     else:
         bot.send_message(message.chat.id, 'Please provide two names for the love calculation.')
 
