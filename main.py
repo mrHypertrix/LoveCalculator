@@ -1,4 +1,5 @@
 import telebot
+import config
 
 def calculate_love_percentage(your_name, partner_name):
   """Calculates the love percentage between two names.
@@ -16,7 +17,17 @@ def calculate_love_percentage(your_name, partner_name):
   love_percentage = (your_name_score * partner_name_score) % 100
   return love_percentage
 
-bot = telebot.TeleBot('YOUR_BOT_TOKEN')
+def start(message):
+  bot.send_message(message.chat.id, 'Welcome to the Love Calculator!')
+
+def love(message):
+  your_name = message.text.split(' ')[1]
+  partner_name = message.text.split(' ')[2]
+  love_percentage = calculate_love_percentage(your_name, partner_name)
+  bot.send_message(message.chat.id, f'Your love percentage is {love_percentage}%')
+  bot.send_message(message.chat.id, f'❤️❤️❤️')
+
+bot = telebot.TeleBot(config.api_id, config.api_hash, bot_token=config.bot_token)
 
 @bot.message_handler(commands=["start"])
 def start(message):
