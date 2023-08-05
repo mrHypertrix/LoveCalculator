@@ -22,7 +22,7 @@ bot = telebot.TeleBot(config.bot_token)
 
 @bot.message_handler(commands=["start"])
 def start_message(message):
-    bot.send_message(message.chat.id, 'Welcome to the Love Calculator!')
+    bot.send_message(message.chat.id, 'Welcome to the Love Calculator!made with @itszoney')
 
 @bot.message_handler(commands=["love"])
 def love_message(message):
@@ -30,7 +30,12 @@ def love_message(message):
     if len(names) >= 2:
         your_name = names[0]
         partner_name = names[1]
-        love_percentage = calculate_love_percentage(your_name, partner_name)
+
+        if your_name.lower() == 'zoney' and partner_name.lower() == 'ashi':
+            love_percentage = 100
+        else:
+            love_percentage = calculate_love_percentage(your_name, partner_name)
+
         bot.send_message(message.chat.id, f"{your_name} and {partner_name} love percentage is {love_percentage}% ❤️❤️❤️")
     else:
         bot.send_message(message.chat.id, 'Please provide two names for the love calculation.')
